@@ -103,6 +103,8 @@ int permutation(string *str){
 	return 0;
 }
 
+
+
 int main(){
 	string s = "abc";
 	int a;
