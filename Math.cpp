@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdio.h>
+#include <string>
 
 using namespace std;
 
@@ -62,10 +63,54 @@ int* primesBelowX(int x){
 	return primes;
 }
 
-int main(){
-	int n = 5, a = 100, b = 80;
-	int* primes = primesBelowX(10);
-	for (n = 0; n < 4; n++){
-		cout << primes[n] << "\n";
+
+// Get permutation of string array
+
+int permutation(string *str){
+
+	string s = *str;
+	
+	// Find the longest acending array
+	int i;
+	for (i = s.length()-2; i>=0; i--){
+		if (s[i] < s[i+1]){
+			break;
+		}
 	}
+
+	if (i == -1){
+		return 1;
+	}
+
+	// Get the next permutation
+	else{
+		for (int j = s.length()-1; j>i; j--){
+			if (s[j]>s[i]){
+				swap(s[j],s[i]);
+				break;
+			}
+		}
+		string temp;
+
+		for (int j = 0; j<=i;j++){
+			temp = temp+s[j];
+		}
+		for (int j = s.length()-1; j>i;j--){
+			temp = temp+s[j];
+		}
+		*str = temp;
+	}
+	return 0;
+}
+
+int main(){
+	string s = "abc";
+	int a;
+
+	do {
+		cout << s << endl;
+		a = permutation(&s);
+	} while(a == 0);
+
+	return 0;
 }
